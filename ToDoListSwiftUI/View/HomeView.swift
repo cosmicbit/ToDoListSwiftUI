@@ -33,6 +33,7 @@ struct HomeView: View {
 				NewTaskView(onSave: viewModel.addTask)
 			}
 			.toolbar {
+				#if os(iOS)
 				ToolbarItem(placement: .topBarTrailing) {
 					Button {
 						viewModel.showNewTaskView = true
@@ -41,6 +42,17 @@ struct HomeView: View {
 							.foregroundStyle(.black)
 					}
 				}
+				#elseif os(macOS)
+				
+				ToolbarItem {
+					Button {
+						viewModel.showNewTaskView = true
+					} label: {
+						Image(systemName: "plus")
+							.foregroundStyle(.black)
+					}
+				}
+				#endif
 			}
 		}
 		
