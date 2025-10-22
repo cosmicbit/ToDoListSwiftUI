@@ -11,25 +11,20 @@ struct TaskView: View {
 	let task: Task
 	var body: some View {
 		HStack {
-			Image(systemName: "checkmark.circle")
-			
-				.font(.system(size: 18, weight: .medium))
+			Image(systemName: task.isComplete ? "checkmark.circle" : "circle")
+				.font(.system(size: 16))
 				.foregroundStyle(.black)
 			
 			Text(task.title)
-				.font(.system(size: 18, weight: .medium))
+				.font(.system(size: 16))
 				.foregroundStyle(.black)
 			Spacer()
-			VStack {
-				Text(task.priority.rawValue.capitalized)
-					.font(.system(size: 16, weight: .semibold))
-					.foregroundStyle(task.priority.tagColor)
-					.padding(.horizontal, 10)
-					.padding(.vertical, 5)
-			}
-			.background(task.priority.tagColor.opacity(0.3))
-			.clipShape(.capsule)
-			
+			Text(task.priority.rawValue.capitalized)
+				.font(.system(size: 15, weight: .bold))
+				.foregroundStyle(task.priority.tagColor)
+				.padding(.horizontal, 12)
+				.padding(.vertical, 5)
+				.background(Capsule().fill(task.priority.tagColor.opacity(0.4)))
 		}
 	}
 }

@@ -14,35 +14,25 @@ struct NewTaskView: View {
 	var onSave: (Task) -> Void
 	
     var body: some View {
-		VStack(spacing: 20) {
-			VStack(alignment: .leading) {
-				HStack {
-					Text("Task Title")
-						.font(.system(size: 20, weight: .bold))
-				}
-				TextField("Task Title", text: $viewModel.taskTitle)
-					.frame(height: 40)
-					.border(.gray.opacity(0.1))
-					.padding(.horizontal, 5)
-				
-			}
+		VStack(alignment: .leading) {
+			Text("Task Title")
+				.font(.system(size: 15, weight: .semibold))
+				.padding(.top, 30)
+			TextField("Task Title", text: $viewModel.taskTitle)
+				.font(.system(size: 15))
+				.textFieldStyle(.roundedBorder)
+				.padding(.bottom)
 			
-			VStack(alignment: .leading) {
-				HStack {
-					Text("Priority")
-						.font(.system(size: 20, weight: .bold))
-					Spacer()
-				}
-				
-				Picker("", selection: $viewModel.selectedPriority) {
-					ForEach(Priority.allCases, id: \.hashValue) { currentPriority in
-						Text(currentPriority.rawValue.capitalized)
-							.tag(currentPriority)
-							.padding()
-						
-					}
+			Text("Priority")
+				.font(.system(size: 15, weight: .semibold))
+			Picker("Priority", selection: $viewModel.selectedPriority) {
+				ForEach(Priority.allCases) { currentPriority in
+					Text(currentPriority.rawValue.capitalized)
+						.tag(currentPriority)
+					
 				}
 			}
+			.padding(.bottom)
 			
 			Button {
 				if viewModel.validate() {
@@ -51,23 +41,20 @@ struct NewTaskView: View {
 				}
 			} label: {
 				Text("Add Task")
-					.font(.system(size: 16, weight: .medium))
+					.font(.system(size: 15, weight: .semibold))
+					.foregroundStyle(.white)
 					.frame(maxWidth: .infinity)
 					.frame(height: 40)
 					.background(.green)
-					.foregroundStyle(.white)
-					.clipShape(RoundedRectangle(cornerRadius: 10))
+					.clipShape(RoundedRectangle(cornerRadius: 6))
 			}
+			Spacer()
 		}
 		.padding(.top, 50)
-		.padding(.horizontal, 20)
-		.alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-			
-		} message: {
+		.padding(.horizontal)
+		.alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) { } message: {
 			Text(viewModel.alertMessage)
 		}
-
-		Spacer()
     }
 }
 

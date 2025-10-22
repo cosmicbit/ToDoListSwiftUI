@@ -12,29 +12,17 @@ struct HomeView: View {
 	@StateObject private var viewModel = HomeViewModel()
 	
     var body: some View {
-		ZStack {
+		NavigationStack {
 			VStack {
-				HStack {
-					Spacer()
-					Button {
-						viewModel.showNewTaskView = true
-					} label: {
-						Image(systemName: "plus")
-							.font(.system(size: 20, weight: .medium))
-							.foregroundStyle(.black)
-					}
-				}
-				.padding(.horizontal, 20)
-				HStack {
-					Text("Tasks")
-						.font(.largeTitle).fontWeight(.bold)
-					Spacer()
-				}
-				.padding(.horizontal, 20)
-
 				List {
 					ForEach(viewModel.tasks) { task in
-						TaskView(task: task)
+						Button {
+							if let index = viewModel.tasks.firstIndex(where: { $0.id == task.id }) {
+								viewModel.tasks[index].isComplete.toggle()
+							}
+						} label: {
+							TaskView(task: task)
+						}
 					}
 					.onDelete(perform: delete)
 				}
@@ -42,12 +30,22 @@ struct HomeView: View {
 				
 				Spacer()
 			}
-			
+			.navigationTitle("Tasks")
+			.sheet(isPresented: $viewModel.showNewTaskView) {
+				NewTaskView(onSave: viewModel.addTask)
+			}
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					Button {
+						viewModel.showNewTaskView = true
+					} label: {
+						Image(systemName: "plus")
+							.foregroundStyle(.black)
+					}
+				}
+			}
 		}
-		.background(.black.opacity(0.1))
-		.sheet(isPresented: $viewModel.showNewTaskView) {
-			NewTaskView(onSave: viewModel.addTask)
-		}
+		
     }
 	
 	private func delete(at offset: IndexSet) {

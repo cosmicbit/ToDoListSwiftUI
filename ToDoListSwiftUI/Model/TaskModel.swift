@@ -11,4 +11,5 @@ struct Task: Identifiable {
 	let id = UUID()
 	let title: String
 	let priority: Priority
+	var isComplete: Bool = false
 }

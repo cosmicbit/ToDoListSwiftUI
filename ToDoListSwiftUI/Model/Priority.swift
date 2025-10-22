@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-enum Priority: String, Hashable, CaseIterable {
-	
+enum Priority: String, Hashable, CaseIterable, Identifiable {
+	var id: Self { self }
 	case urgent, normal, optional
 }
 
