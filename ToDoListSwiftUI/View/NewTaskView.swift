@@ -50,7 +50,6 @@ struct NewTaskView: View {
 			}
 			Spacer()
 		}
-		.padding(.top, 50)
 		.padding(.horizontal)
 		.alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) { } message: {
 			Text(viewModel.alertMessage)

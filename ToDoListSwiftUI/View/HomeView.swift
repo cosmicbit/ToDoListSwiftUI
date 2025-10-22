@@ -16,8 +16,8 @@ struct HomeView: View {
 			VStack {
 				List {
 					ForEach($viewModel.tasks) { $task in
-						Button {
-							task.isComplete.toggle()
+						NavigationLink {
+							TaskDetailView(task: $task)
 						} label: {
 							TaskView(task: task)
 						}
