@@ -15,11 +15,9 @@ struct HomeView: View {
 		NavigationStack {
 			VStack {
 				List {
-					ForEach(viewModel.tasks) { task in
+					ForEach($viewModel.tasks) { $task in
 						Button {
-							if let index = viewModel.tasks.firstIndex(where: { $0.id == task.id }) {
-								viewModel.tasks[index].isComplete.toggle()
-							}
+							task.isComplete.toggle()
 						} label: {
 							TaskView(task: task)
 						}
