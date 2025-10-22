@@ -45,8 +45,10 @@ struct NewTaskView: View {
 			}
 			
 			Button {
-				onSave(viewModel.modelTask())
-				dismiss()
+				if viewModel.validate() {
+					onSave(viewModel.modelTask())
+					dismiss()
+				}
 			} label: {
 				Text("Add Task")
 					.font(.system(size: 16, weight: .medium))
@@ -59,6 +61,12 @@ struct NewTaskView: View {
 		}
 		.padding(.top, 50)
 		.padding(.horizontal, 20)
+		.alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+			
+		} message: {
+			Text(viewModel.alertMessage)
+		}
+
 		Spacer()
     }
 }
