@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct NewTaskView: View {
-	@Environment(\.dismiss) var dismiss
+	
 	@StateObject private var viewModel = NewTaskViewModel()
+	@Environment(\.dismiss) var dismiss
+	@Environment(\.horizontalSizeClass) var horizontalSizeClass
+	@Environment(\.verticalSizeClass) var verticalSizeClass
 	
 	var onSave: (Task) -> Void
 	
     var body: some View {
 		VStack(alignment: .leading) {
+			if horizontalSizeClass == .regular && verticalSizeClass == .compact || horizontalSizeClass == .compact && verticalSizeClass == .compact {
+				HStack {
+					Spacer()
+					Button {
+						dismiss()
+					} label: {
+						Image(systemName: "xmark")
+							.foregroundStyle(.black)
+					}
+				}
+				.padding(.top)
+			}
 			Text("Task Title")
 				.font(.system(size: 15, weight: .semibold))
 				.padding(.top, 30)

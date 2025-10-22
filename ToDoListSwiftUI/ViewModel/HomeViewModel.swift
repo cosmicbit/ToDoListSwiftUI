@@ -10,7 +10,6 @@ import Combine
 
 class HomeViewModel: ObservableObject {
 	@Published var tasks: [Task] = []
-	
 	@Published var showNewTaskView: Bool = false
 	
 	func addTask(task: Task) {
