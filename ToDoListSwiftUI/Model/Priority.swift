@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-enum Priority: String {
+enum Priority: String, Hashable, CaseIterable {
+	
 	case urgent, normal, optional
 }
 

@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		50E344A62EA8A5F3003635CB /* ToDoListSwiftUI */ = {
+		50E344E22EA8CA62003635CB /* ToDoListSwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ToDoListSwiftUI;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 		50E3449B2EA8A5F3003635CB = {
 			isa = PBXGroup;
 			children = (
-				50E344A62EA8A5F3003635CB /* ToDoListSwiftUI */,
+				50E344E22EA8CA62003635CB /* ToDoListSwiftUI */,
 				50E344A52EA8A5F3003635CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				50E344A62EA8A5F3003635CB /* ToDoListSwiftUI */,
+				50E344E22EA8CA62003635CB /* ToDoListSwiftUI */,
 			);
 			name = ToDoListSwiftUI;
 			packageProductDependencies = (
